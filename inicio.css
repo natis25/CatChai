@@ -266,7 +266,7 @@ footer p {
     /* Asegura que esté encima de otros elementos */
 }
 
-/* From Uiverse.io by adamgiebl */
+/* From Uiverse.io for "↑ Subir ↑" button animation */
 button {
     font-size: 18px;
     display: inline-block;
@@ -285,7 +285,7 @@ button {
 }
 
 button:hover {
-    box-shadow: 0px 0.1em 0.2em #42292366, 0px 0.4em 0.7em -0.1em #422d234d, inset 0px -0.2em 0px #ff4800;
+    box-shadow: 0px 0.1em 0.2em #42292366, 0px 0.4em 0.7em -0.1em #422d234d, inset 0px -0.2em 0px #d03b00d6;
     transform: translateY(-0.1em);
 }
 

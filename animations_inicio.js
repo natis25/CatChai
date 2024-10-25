@@ -4,7 +4,6 @@ const sections = document.querySelectorAll('section');
 // Añade un evento de desplazamiento (scroll)
 window.addEventListener('scroll', () => {
     const scrollPos = window.scrollY + window.innerHeight * 0.75;
-
     // Activa la animación cuando la sección entra en el viewport
     sections.forEach(section => {
         if (scrollPos > section.offsetTop) {
