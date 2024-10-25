@@ -3,7 +3,7 @@
 ## Integrantes
 | INTEGRANTES       | ROLES                                |
 |---------------------|--------------------------------------------|
-| URRUTIA AGUDO NATALIA  | coach, documentadora y dev. front end |
+| URRUTIA AGUDO NATALIA  | Coach, documentadora y dev. front end |
 | TORREZ  LA TORRE SANTIAGO | Dev. back end y tester |
 | OROPEZA BALCAZAR DANIELA  | Dev. front end y back end      |
 
