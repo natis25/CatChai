@@ -1,22 +1,22 @@
 # Proyecto Cat Chai - Sistema Web de Gestión de pedidos, promociones y productos para la cafetería Cat Chai
 
-## Integrantes
+# Integrantes
 | INTEGRANTES       | ROLES                                |
 |---------------------|--------------------------------------------|
 | URRUTIA AGUDO NATALIA  | Coach, documentadora y dev. front end |
 | TORREZ  LA TORRE SANTIAGO | Dev. back end y tester |
 | OROPEZA BALCAZAR DANIELA  | Dev. front end y back end      |
 
-## Descripción
+# Descripción
 ### El sistema de gestión de pedidos y productos de Cat Chai es una solución web diseñada para mejorar la eficiencia en la operación de la cafetería. Esta plataforma permite administrar pedidos, promociones, productos y ofrece una experiencia personalizada a los clientes. El proyecto se desarrolla utilizando el Proceso Unificado para organizar las fases de análisis, modelado, construcción y despliegue.
 
-## Características
+# Características
 ###   - Gestión de pedidos, productos y promociones en tiempo real.
 ###   - Funcionalidad de inicio de sesión con control de acceso para administrador, empleados y clientes.
 ###   - Sistema de recompensas y fidelización de clientes.
 ###   - Reportes de ventas y análisis de datos para optimizar el servicio.
 
-## Base de Datos
+# Base de Datos
 
 
 # Tecnologías utilizadas
