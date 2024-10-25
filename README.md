@@ -1,7 +1,7 @@
 # Proyecto Cat Chai - Sistema de Gestión de Cafetería
 
 ## Integrantes
-| Integrante       | Roles                                |
+| INTEGRANTES       | ROLES                                |
 |---------------------|--------------------------------------------|
 | URRUTIA AGUDO NATALIA  | coach, documentadora y dev. front end |
 | TORREZ  LA TORRE SANTIAGO | Dev. back end y tester |
