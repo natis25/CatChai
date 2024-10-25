@@ -1,0 +1,295 @@
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    /*background: #461b00;*/
+    background: linear-gradient(to right, #bde2ff 0%, #401802 100%);
+    color: #fff;
+}
+
+h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Añadir sombra al texto */
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    line-height: 1.8;
+}
+
+section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 1s ease, transform 1s ease, background-size 1.5s ease;
+    background-size: 100%;
+}
+
+section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animaciones específicas */
+section.slide-left {
+    transform: translateX(-100px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+section.slide-right {
+    transform: translateX(100px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+/* Imágenes de fondo con zoom */
+.content {
+    z-index: 2;
+    padding: 20px;
+    background: hsla(0, 0%, 0%, 0.6);
+    border-radius: 10px;
+}
+
+/* Secciones */
+header {
+    background: url('Images/header_background.webp') no-repeat center center/cover;
+}
+
+#bienvenida {
+    background: url('Images/bienvenida_background.webp') no-repeat center center/cover;
+}
+
+#acerca-de {
+    background: url('Images/nosotros_background.webp') no-repeat center center/cover;
+}
+
+#productos-servicios {
+    background: url('Images/productos_background.webp') no-repeat center center/cover;
+}
+
+/* Botón */
+button {
+    background-color: #6b4e16;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5a3e10;
+}
+
+/* HEADER */
+#header {
+    padding: 20px;
+    text-align: center;
+    color: #fff; /* Texto blanco para contraste */
+    box-shadow: 0 4px 8px #00000033; /* Sombra para dar profundidad */
+}
+
+#header .content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5%;
+}
+
+h1 {
+    font-size: 3em;
+    color: #c24208;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para texto */
+}
+
+.slogan {
+    color: #371a09;
+    font-size: 1.2em;
+    font-style: italic;
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
+}
+
+/* FOOTER */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .content {
+        width: 90%;
+    }
+}
+
+/* Estilos del pie de página */
+footer {
+    background-color: #2c1b11;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Logo */
+.footer-logo img {
+    margin-left: 30%;
+    width: 230px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10%;
+}
+
+/* Enlaces útiles */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ffcc00;
+}
+
+/* Redes sociales */
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-social h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.footer-social a {
+    margin: 5px;
+}
+
+.footer-social img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social img:hover {
+    transform: scale(1.2);
+}
+
+/* Derechos reservados */
+footer p {
+    font-size: 12px;
+    margin-top: 20px;
+    flex-basis: 100%;
+}
+
+/* Botón volver arriba */
+.footer-back-to-top {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.footer-back-to-top a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #6b4e16;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-back-to-top a:hover {
+    background-color: #451f00;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links,
+    .footer-social {
+        align-items: center;
+    }
+}
+
+/* Boton al Encabezado */
+.scroll-to-top {
+    position: fixed;
+    /* Posicionamiento fijo */
+    bottom: 20px;
+    /* Distancia desde el fondo */
+    right: 20px;
+    /* Distancia desde la derecha */
+    padding: 10px 20px;
+    text-decoration: none;
+    /* Sin subrayado */
+    z-index: 1000;
+    /* Asegura que esté encima de otros elementos */
+}
+
+/* From Uiverse.io by adamgiebl */
+button {
+    font-size: 18px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow, transform;
+    background: radial-gradient(100% 100% at 100% 0% , #ffb289 0%, #ff7337 100%);
+    box-shadow: 0px 0.01em 0.01em #42342366, 0px 0.3em 0.7em -0.01em #42342366, inset 0px -0.01em 0px #42342366;
+    padding: 0 2em;
+    border-radius: 0.3em;
+    color: #fff;
+    height: 2.6em;
+    text-shadow: 0 1px 0 #00000066;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+button:hover {
+    box-shadow: 0px 0.1em 0.2em #42292366, 0px 0.4em 0.7em -0.1em #422d234d, inset 0px -0.2em 0px #ff4800;
+    transform: translateY(-0.1em);
+}
+
+button:active {
+    box-shadow: inset 0px 0.1em 0.6em #3c1000;
+    transform: translateY(0em);
+}
