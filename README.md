@@ -1,4 +1,14 @@
 # Proyecto Cat Chai - Sistema de Gestión de Cafetería
+## Integrantes
+## Funcionalidades
+
+| Integrante       | Roles                                |
+|---------------------|--------------------------------------------|
+| URRUTIA AGUDO NATALIA  | coach, documentadora y dev. front end |
+| TORREZ  LA TORRE SANTIAGO | Dev. back end y tester |
+| OROPEZA BALCAZAR DANIELA  | Dev. front end y back end      |
+
+
 ## Descripción
 ### El sistema de gestión de pedidos y productos de Cat Chai es una solución web diseñada para mejorar la eficiencia en la operación de la cafetería. Esta plataforma permite administrar pedidos, promociones, productos y ofrece una experiencia personalizada a los clientes. El proyecto se desarrolla utilizando el Proceso Unificado para organizar las fases de análisis, modelado, construcción y despliegue.
 
@@ -22,7 +32,8 @@
 ### - JavaScript
 ## Backend: 
 ### - MySQL
-### - PHP
+### - PHP (Xampp)
+### - Apache
 ## Frameworks:
 ### - Animaciones en JavaScript para interacciones de usuario.
 ### - Diseño adaptable con CSS y estructura HTML semántica.
