@@ -9,11 +9,13 @@
 ###   - Reportes de ventas y análisis de datos para optimizar el servicio.
 
 # Tecnologías utilizadas
-## Modelado de diagramasÑ
+## Modelado:
 ### - Vertabelo
 ### - Draw.io
+### - Visual Studio Code
 ## Comunicación/Planificación:
-### - Meet
+### - Google Meet
+### - Whatsapp
 ## Frontend:
 ### - HTML
 ### - CSS
