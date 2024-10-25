@@ -18,6 +18,7 @@
 
 # Base de Datos
 
+![Cat_Chai_Physical_Export-2024-10-25_13-14](https://github.com/user-attachments/assets/499a7269-2c11-42c0-81b8-db36cdc7e268)
 
 # Tecnologías utilizadas
 ## Modelado:
