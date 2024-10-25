@@ -9,6 +9,11 @@
 ###   - Reportes de ventas y análisis de datos para optimizar el servicio.
 
 # Tecnologías utilizadas
+## Modelado de diagramasÑ
+### - Vertabelo
+### - Draw.io
+## Comunicación/Planificación:
+### - Meet
 ## Frontend:
 ### - HTML
 ### - CSS
