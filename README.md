@@ -16,6 +16,9 @@
 ###   - Sistema de recompensas y fidelización de clientes.
 ###   - Reportes de ventas y análisis de datos para optimizar el servicio.
 
+## Base de Datos
+
+
 # Tecnologías utilizadas
 ## Modelado:
 ### - Vertabelo
