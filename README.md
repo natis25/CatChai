@@ -1,4 +1,4 @@
-# Proyecto Cat Chai - Sistema de Gestión de Cafetería
+# Proyecto Cat Chai - Sistema Web de Gestión de pedidos, promociones y productos para la cafetería Cat Chai
 
 ## Integrantes
 | INTEGRANTES       | ROLES                                |
