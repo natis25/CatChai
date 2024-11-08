@@ -1,0 +1,107 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('Images/login_background.webp') no-repeat center center/cover;
+}
+
+/* Contenedor de login con efecto de difuminado */
+.login-container {
+    background-color: rgba(135, 135, 135, 0.2); /* Fondo semitransparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    padding: 40px 30px; /* Espaciado adicional */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px; /* Ancho mayor para mayor alineación */
+}
+
+/* Título */
+h2 {
+    margin-bottom: 25px; /* Mayor espaciado inferior */
+    color: #ff7e46;
+    font-size: 38px;
+}
+
+/* Etiquetas y campos de texto */
+label {
+    display: block;
+    margin-bottom: 10px; /* Espaciado inferior adicional */
+    font-weight: bold;
+    color: #ffb700;
+    font-size: 24px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px; /* Aumenta el padding para más altura */
+    margin-bottom: 15px; /* Espaciado inferior adicional */
+    background-color: #f8ffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+}
+
+/* Botones */
+button.btn {
+    width: 100%;
+    padding: 12px; /* Aumenta el padding para más altura */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background-color: rgb(255, 222, 200);
+    color: rgb(66, 18, 0);
+    border: none;
+    position: relative;
+    transition: all 0.2s;
+    margin-top: 15px; /* Espaciado superior adicional para separación */
+}
+
+/* Efectos de animación del botón */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: #ffac28;
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto de pseudo-elemento para botón */
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #fff;
+    transition: all 0.4s;
+}
+
+.btn:hover::after {
+    transform: scaleX(1) scaleY(1.2);
+    opacity: 0;
+}
+
+/* Enlace para volver a la página principal */
+a {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
