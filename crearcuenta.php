@@ -50,18 +50,22 @@
     <title>Crear Cuenta</title>
 </head>
 <body>
-    
-
-    <?php if (!empty($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-
-    <?php if (!empty($success)): ?>
-        <p style="color: green;"><?php echo $success; ?></p>
-    <?php endif; ?>
-
+            
     <form action="crearcuenta.php" method="post">
         <h1>Crear Cuenta Nueva </h1>
+        
+        <hr>
+        <?php if (!empty($error)): ?>
+        <p class="error"><?php echo $error; ?></p>
+        <?php endif; ?>
+        
+        <?php if (!empty($success)): ?>
+            <p class="error"><?php echo $success; ?></p>
+        <?php endif; ?>
+
+        <hr>
+        <i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-unlock"></i>
 
         <label for="nombre_completo">Nombre Completo:</label>
         <input type="text" name="nombre_completo" placeholder="Nombre Completo" id="nombre_completo" required >
