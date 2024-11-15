@@ -1,0 +1,62 @@
+body {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('Images/home_background.webp') no-repeat center center/cover;
+    color: black;
+    margin: 0;
+}
+
+h1 {
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+a.btn {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 3px solid white; /* Color de borde distinto */
+    border-radius: 50px; /* Bordes más redondeados */
+    padding: 18px 40px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #ff8c00; /* Fondo de color anaranjado */
+    margin: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: inline-block;
+    width: 80%;
+    max-width: 320px;
+    text-align: center;
+}
+
+a.btn:hover {
+    color: #007c7c;
+    background-color: #c9ff3f; /* Fondo más oscuro al hacer hover */
+    border-color: #007c7c; /* Borde también se oscurece */
+}
+
+a.btn::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg); /* Transformación más suave */
+    background-color: #ff4500; /* Color de fondo del efecto */
+    z-index: -1;
+    transition: all 1s;
+}
+
+a.btn:hover::before {
+    width: 160%;
+}
