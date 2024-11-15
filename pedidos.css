@@ -35,23 +35,6 @@ table {
     overflow: hidden;
 }
 
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 1rem;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #616a13;
-    color: white;
-    font-weight: bold;
-}
-
-td {
-    color: #371900;
-}
-
 .total {
     font-size: 1.2rem;
     font-weight: bold;
@@ -120,4 +103,39 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.categoria {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #120707;
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap; /* Para permitir que las tarjetas se ajusten si hay muchas en la fila */
+    gap: 15px; 
+}
+
+/* Estilo para cada producto */
+.producto {
+    border: 1px solid #281111;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px; 
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.producto:hover {
+    transform: scale(1.05);
+}
+
+.producto h4 {
+    color: #000101;
+}
+
+.producto p {
+    color: #b13939;
 }
