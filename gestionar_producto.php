@@ -67,7 +67,7 @@
             <th>Descripción</th>
             <th>Disponibilidad</th>
             <th>Categoría</th>
-            <th>Acciones</th>
+            <th>Modificar</th>
         </tr>
         <?php
         include 'catchai.php';
