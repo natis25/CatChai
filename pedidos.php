@@ -1,5 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php
+include 'catchai.php'; // Conexión a la base de datos
+class Pedido {
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+    
+    public function mostrarProductos() {
+        $query = "SELECT producto.*, categoria.Categoria 
+                  FROM producto 
+                  JOIN categoria ON producto.Categoria_idCategoria = categoria.idCategoria 
+                  WHERE producto.Disponibilidad > 0 
+                  ORDER BY categoria.Categoria";
+        $result = $this->conn->query($query);
+       
+        $categoriaActual = "";
+        while ($row = $result->fetch_assoc()) {
+            if ($categoriaActual != $row['Categoria']) {
+                if ($categoriaActual != "") {
+                    echo "</div>"; // Cierra el div anterior de categoría
+                }
+                $categoriaActual = $row['Categoria'];
+                echo "<div class='categoria'><h3>{$categoriaActual}</h3>";
+            }
+            echo "<div class='producto'>
+                    <h4>{$row['Producto']}</h4>
+                    <p>{$row['Descripcion']}</p>
+                    <p>Precio: Bs{$row['Precio']}</p>
+                    <p>Disponibilidad: {$row['Disponibilidad']}</p>
+                    <input type='number' class='cantidad' 
+                        data-producto='{$row['Producto']}' 
+                        data-precio='{$row['Precio']}' 
+                        max='{$row['Disponibilidad']}' 
+                        value='0' 
+                        onchange='calcularTotal()'>
+                  </div>";
+        }
+        echo "</div>"; // Cierra el último div de categoría
+    }
+}
+$pedido = new Pedido($conn);
+?>
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="pedidos.css">
@@ -8,67 +53,42 @@
     <script>
         // Función para calcular y mostrar el total
         function calcularTotal() {
-            let total = 0;
-            let detallePedido = "";
-            
-            const cantidades = document.querySelectorAll('.cantidad');
-            
-            cantidades.forEach(cantidad => {
-                const precio = parseFloat(cantidad.dataset.precio);
-                const producto = cantidad.dataset.producto;
-                const max = parseInt(cantidad.max);
-                const cant = parseInt(cantidad.value) || 0;
+    let total = 0;
+    let detallePedido = "";
 
-                if (cant > 0) {
-                    const subtotal = precio * cant;
-                    total += subtotal;
+    const cantidades = document.querySelectorAll('.cantidad');
 
-                    // Añadir producto a la tabla de pedido
-                    detallePedido += `<tr>
-                        <td>${producto}</td>
-                        <td>${cant}</td>
-                        <td>Bs${precio.toFixed(2)}</td>
-                        <td>Bs${subtotal.toFixed(2)}</td>
-                    </tr>`;
-                }
-            });
+    cantidades.forEach(cantidad => {
+        const precio = parseFloat(cantidad.dataset.precio);
+        const producto = cantidad.dataset.producto;
+        const max = parseInt(cantidad.max);
+        const cant = parseInt(cantidad.value) || 0;
 
+        if (cant > 0 && cant <= max) {
+            const subtotal = precio * cant;
+            total += subtotal;
+
+            // Añadir producto a la tabla de pedido
+            detallePedido += `<tr>
+                <td>${producto}</td>
+                <td>${cant}</td>
+                <td>Bs${precio.toFixed(2)}</td>
+                <td>Bs${subtotal.toFixed(2)}</td>
+            </tr>`;
+        }
+    });
             // Mostrar el total y el detalle del pedido
             document.getElementById('total').textContent = 'Total: Bs' + total.toFixed(2);
             document.getElementById('detallePedido').innerHTML = detallePedido;
         }
     </script>
+
 </head>
 <body>
     <h1>Nuevo Pedido</h1>
 
     <form action="procesar_pedido.php" method="post">
-        <table>
-            <tr>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Disponibilidad</th>
-                <th>Cantidad</th>
-            </tr>
-            <?php
-            include 'catchai.php';
-            $query = "SELECT * FROM Producto WHERE Disponibilidad > 0";
-            $result = $conn->query($query);
-            
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-                        <td>{$row['Producto']}</td>
-                        <td>Bs{$row['Precio']}</td>
-                        <td>{$row['Disponibilidad']}</td>
-                        <td>
-                            <input type='number' name='productos[{$row['idProducto']}]' class='cantidad' data-precio='{$row['Precio']}' data-producto='{$row['Producto']}' min='0' max='{$row['Disponibilidad']}' value='0' onchange='calcularTotal()'>
-                        </td>
-                    </tr>";
-            }
-            $conn->close();
-            ?>
-        </table>
-
+        <?php $pedido->mostrarProductos(); ?>
         <p class="total" id="total">Total: Bs 0.00</p>
         <button class="btn" type="submit">Confirmar Pedido</button>
     </form>
