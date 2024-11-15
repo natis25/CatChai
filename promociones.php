@@ -88,20 +88,20 @@ if (isset($_SESSION['mensaje'])): ?>
         ?>
         <h2>Modificar Promoción</h2>
         <form action="procesar_promocion.php" method="post">
-            <input type="hidden" name="accion" value="modificar">
+            <input type="hidden" name="accion" value="editar"> <!-- El valor debe coincidir con el `case` -->
             <input type="hidden" name="id_descuento" value="<?= htmlspecialchars($id_descuento); ?>">
 
             <label for="nuevo_descuento">Nombre de Descuento:</label>
-            <input type="text" name="nuevo_descuento" id="nuevo_descuento" value="<?= htmlspecialchars($row['Descuento']); ?>" required>
+            <input type="text" name="descuento" id="nuevo_descuento" value="<?= htmlspecialchars($row['Descuento']); ?>" required>
 
             <label for="nuevo_porcentaje">Porcentaje:</label>
-            <input type="number" name="nuevo_porcentaje" id="nuevo_porcentaje" value="<?= htmlspecialchars($row['Porcentaje']); ?>" min="0" max="100" required>
+            <input type="number" name="porcentaje" id="nuevo_porcentaje" value="<?= htmlspecialchars($row['Porcentaje']); ?>" min="0" max="100" required>
 
             <label for="nueva_inicio">Fecha de Inicio:</label>
-            <input type="date" name="nueva_inicio" id="nueva_inicio" value="<?= htmlspecialchars($row['FechaInicio']); ?>" required>
+            <input type="date" name="fecha_inicio" id="nueva_inicio" value="<?= htmlspecialchars($row['FechaInicio']); ?>" required>
 
             <label for="nuevo_fin">Fecha de Fin:</label>
-            <input type="date" name="nuevo_fin" id="nuevo_fin" value="<?= htmlspecialchars($row['FechaFin']); ?>" required>
+            <input type="date" name="fecha_fin" id="nuevo_fin" value="<?= htmlspecialchars($row['FechaFin']); ?>" required>
 
             <button type="submit">Guardar Cambios</button>
         </form>
