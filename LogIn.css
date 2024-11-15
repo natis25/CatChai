@@ -53,7 +53,7 @@ input{
 button.btn {
     width: 60%;
     padding: 12px; /* Aumenta el padding para más altura */
-    border-radius: 4px;
+    border-radius: 10cap;
     cursor: pointer;
     font-size: 17px;
     text-transform: uppercase;
@@ -70,7 +70,7 @@ button.btn {
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background-color: #882d00;
+    background-color: #883400;
 }
 
 .btn:active {
@@ -78,7 +78,6 @@ button.btn {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Efecto de pseudo-elemento para botón */
 .btn::after {
     content: "";
     display: inline-block;
@@ -100,7 +99,7 @@ button.btn {
 
 /* Enlace para volver a la página principal */
 a {
-    color: rgb(54, 0, 0);
+    color: rgb(193, 0, 0);
     text-decoration: none;
     font-size: 1.4rem;
     margin-top: 15px;

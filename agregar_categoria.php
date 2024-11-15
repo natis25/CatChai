@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="promociones.css">
     <title>Gestionar Categorías</title>
 </head>
+
 <body>
     <style>
         body {
@@ -13,6 +15,18 @@
     </style>
     <h1>Gestionar Categorías</h1>
 
+    <?php
+        if (isset($_GET['error'])) {
+        ?>
+            <p class="error">
+                <?php
+                echo $_GET['error']
+                ?>
+            </p>
+        <?php
+        }
+        ?>
+    
     <!-- Formulario para añadir una categoría -->
     <h2>Añadir Categoría</h2>
     <form action="procesar_categoria.php" method="post">
@@ -57,4 +71,5 @@
     <a href="Home.php">Volver al Inicio</a>
 
 </body>
+
 </html>

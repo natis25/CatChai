@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="promociones.css">
@@ -11,22 +12,20 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Gestionar Productos</h1>
 
-    <?php
-    if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'producto_actualizado') {
-        echo "<p class='mensaje-exito'>Producto actualizado correctamente.</p>";
-    } elseif (isset($_GET['mensaje']) && $_GET['mensaje'] == 'producto_agregado') {
-        echo "<p class='mensaje-exito'>Producto agregado correctamente.</p>";
-    }
-    ?>
-
+    <?php if (isset($_GET['mensaje']) && $_GET['mensaje'] == 'producto_actualizado') { ?>
+        <p class="error"><?php echo "Producto actualizado correctamente."; ?></p>
+    <?php } elseif (isset($_GET['mensaje']) && $_GET['mensaje'] == 'producto_agregado') { ?>
+        <p class="error"><?php echo "Producto agregado correctamente."; ?></p>
+    <?php } ?>
     <!-- Formulario para añadir un producto -->
     <h2>Añadir Producto</h2>
     <form action="procesar_producto.php" method="post">
         <input type="hidden" name="accion" value="agregar">
-        
+
         <label for="producto">Nombre del Producto:</label>
         <input type="text" name="producto" id="producto" required>
 
@@ -46,7 +45,7 @@
             include 'catchai.php';
             $query = "SELECT * FROM Categoria";
             $result = $conn->query($query);
-            
+
             while ($row = $result->fetch_assoc()) {
                 echo "<option value='{$row['idCategoria']}'>{$row['Categoria']}</option>";
             }
@@ -89,7 +88,7 @@
                         <td><input type='number' name='disponibilidad' min='0' value='{$row['Disponibilidad']}' required></td>
                         <td>
                             <select name='categoria' required>";
-                            
+
             $categoria_query = "SELECT * FROM Categoria";
             $categoria_result = $conn->query($categoria_query);
             while ($categoria_row = $categoria_result->fetch_assoc()) {
@@ -110,4 +109,5 @@
     <a href="Home.php">Volver al Inicio</a>
 
 </body>
+
 </html>

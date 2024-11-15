@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,21 +10,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Inicio de sesion</title>
 </head>
+
 <body>
     <form action="iniciarsesion.php" method="POST">
         <h1>INICIAR SESION</h1>
         <hr>
-        <?php 
-            if (isset($_GET['error'])) {
-            ?>
+        <?php
+        if (isset($_GET['error'])) {
+        ?>
             <p class="error">
                 <?php
                 echo $_GET['error']
                 ?>
-                
             </p>
-        <?php    
-            }
+        <?php
+        }
         ?>
 
         <hr>
@@ -36,11 +37,12 @@
         <input type="password" name="Pass" placeholder="Pass">
         <hr>
         <a href="Home.php">
-            <button type="submit" class="btn">Iniciar Sesion</button>
+            <button class="btn" type="submit">Iniciar Sesion</button>
         </a>
         <a href="CrearCuenta.php">Crear Cuenta</a>
         <a href="Inicio.html">Volver a Inicio</a>
 
     </form>
 </body>
+
 </html>

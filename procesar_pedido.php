@@ -65,8 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        // Redirigir a inicio.php con mensaje de éxito
-        header("Location: inicio.php?mensaje=pedido_agregado");
+        // Redirigir a pedidos.php con mensaje de éxito
+        header("Location: pedidos.php?mensaje=pedido_agregado");
         exit;
     } else {
         echo "Error al procesar el pedido: " . $conn->error;

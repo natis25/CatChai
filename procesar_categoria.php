@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verifica si el campo está vacío
     if (empty($categoria)) {
-        echo "El nombre de la categoría no puede estar vacío.";
+        header("Location: agregar_categoria.php?error=El nombre de la categoría no puede estar vacío.");
         exit;
     }
 
@@ -18,13 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Ejecuta la consulta y verifica si se ejecutó correctamente
     if ($stmt->execute()) {
-        echo "Categoría añadida correctamente.";
+        header("Location: agregar_categoria.php?error=Categoría añadida correctamente.");
+        exit;
     } else {
-        echo "Error al añadir la categoría: " . $conn->error;
+        header("Location: agregar_categoria.php?error=Error al añadir la categoría: ",  $conn->error);
     }
 
     // Cierra la conexión
     $stmt->close();
     $conn->close();
 }
-?>
