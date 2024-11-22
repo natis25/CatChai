@@ -2,7 +2,13 @@
 include 'catchai.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $productos = $_POST['productos'];
+    
+    $productos = json_decode($_POST['productos'], true);
+    if (!$productos) {
+        echo "No se recibieron productos.";
+        exit;
+    }
+
     $fecha_pedido = date('Y-m-d');
     $hora_pedido = date('H:i:s');
     $total = 0;
