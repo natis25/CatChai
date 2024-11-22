@@ -17,10 +17,10 @@ body{
 form{
     width: 600px;
     border:  2px solid black;
-    padding: 6rem;
+    padding: 4rem;
     background-color: rgba(0, 0, 0, 0.444);
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     color: aliceblue;
 }
 
@@ -31,6 +31,7 @@ h1{
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
+    text-align: center;
 }
 
 label{
@@ -42,7 +43,7 @@ label{
 
 input{
     display: block;
-    border: 2px solid black;
+    border: 2px solid rgb(255, 217, 0);
     width: 95%;
     padding: 10px;
     margin: 10px;
@@ -71,6 +72,7 @@ button.btn {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     background-color: #883400;
+    color: white;
 }
 
 .btn:active {
@@ -83,12 +85,12 @@ button.btn {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 10cap;
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: #fff;
+    background-color: #ddc006;
     transition: all 0.4s;
 }
 
@@ -99,7 +101,7 @@ button.btn {
 
 /* Enlace para volver a la página principal */
 a {
-    color: rgb(193, 0, 0);
+    color: rgb(223, 184, 28);
     text-decoration: none;
     font-size: 1.4rem;
     margin-top: 15px;
