@@ -51,7 +51,7 @@ $pedido = new Pedido($conn);
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="pedidos.css">
+    <link rel="stylesheet" href="promociones.css">
     <title>Nuevo Pedido</title>
 
     <script>
