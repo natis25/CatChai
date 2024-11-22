@@ -67,14 +67,15 @@ input[type="date"] {
     font-size: 17px;
     cursor: pointer;
     font-weight: bold;
-    background-color: rgba(153, 205, 50, 0.263);
+    background-color: rgba(222, 132, 14, 0.773);
     position: relative;
     transition: all 1s;
     overflow: hidden;
 }
 
 .btn:hover {
-    color: #09ff26;
+    background-color: #19e631d7;
+
 }
 
 .btn::before {
@@ -85,9 +86,8 @@ input[type="date"] {
     top: 0;
     left: -40px;
     transform: skewX(65deg);
-    background-color: #00b71e;
     z-index: -1;
-    transition: all 1.5s;
+    transition: all 1s;
 }
 
 .btn:hover::before {
@@ -116,10 +116,11 @@ li:last-child {
 }
 
 a {
-    color: rgb(54, 0, 0);
+    color: rgb(27, 159, 0);
     text-decoration: none;
     font-size: 1.4rem;
     margin-top: 15px;
+    margin-bottom: 25px;
 }
 
 table {
