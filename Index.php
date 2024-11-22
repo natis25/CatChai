@@ -33,15 +33,16 @@
         <input type="text" name="Nombre_usuario" placeholder="Nombre de usuario">
 
         <i class="fa-solid fa-unlock"></i>
-        <label>Pass</label>
-        <input type="password" name="Pass" placeholder="Pass">
+        <label>Contraseña</label>
+        <input type="password" name="Pass" placeholder="Contraseña">
         <hr>
         <a href="Home.php">
             <button class="btn" type="submit">Iniciar Sesion</button>
         </a>
+        <br><br>
         <a href="CrearCuenta.php">Crear Cuenta</a>
+        <br><br>
         <a href="Inicio.html">Volver a Inicio</a>
-
     </form>
 </body>
 
