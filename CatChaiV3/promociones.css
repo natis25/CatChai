@@ -27,18 +27,16 @@ h2 {
 }
 
 label {
-    color: rgb(255, 225, 0);
-    font-size: 18px;
-    font-weight: 350;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
 }
 
 form {
-    background-color: rgba(45, 15, 0, 0.812);
     padding: 30px;
     border-radius: 10px;
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -67,14 +65,14 @@ input[type="date"] {
     font-size: 17px;
     cursor: pointer;
     font-weight: bold;
+    background-color: #616A13;
     position: relative;
-    transition: all 1s;
+    transition: all 0.6s;
     overflow: hidden;
 }
 
 .btn:hover {
     background-color: #19e631d7;
-
 }
 
 .btn::before {
@@ -186,3 +184,4 @@ option:hover {
     border-radius: 5px;
     margin: 20px auto;
 }
+
