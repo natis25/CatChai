@@ -1,0 +1,141 @@
+body {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('Images/pedidos_background.webp') no-repeat center center/cover;
+    color: black;
+    margin: 0;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+form {
+    background-color: rgba(45, 15, 0, 0.812);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(0, 220, 0);
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+
+.btn {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid white;
+    width: 80%;
+    border-radius: 10cap;
+    padding: 10px 20px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgba(153, 205, 50, 0.263);
+    position: relative;
+    transition: all 1s;
+    overflow: hidden;
+}
+
+.btn:hover {
+    color: #09ff26;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(65deg);
+    background-color: #00b71e;
+    z-index: -1;
+    transition: all 1s;
+}
+
+.btn:hover::before {
+    width: 160%;
+}
+
+#detallePedidoTable {
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+}
+
+#detallePedidoTable th, #detallePedidoTable td {
+    padding: 10px;
+    text-align: center;
+}
+
+a {
+    color: rgb(186, 30, 30);
+    text-decoration: none;
+    font-size: 1.4rem;
+    margin-top: 15px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.categoria {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #120707;
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap; /* Para permitir que las tarjetas se ajusten si hay muchas en la fila */
+    gap: 15px; 
+}
+
+/* Estilo para cada producto */
+.producto {
+    border: 1px solid #281111;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px; 
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.producto:hover {
+    transform: scale(1.05);
+}
+
+.producto h4 {
+    color: #000101;
+}
+
+.producto p {
+    color: #b13939;
+}

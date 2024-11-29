@@ -1,0 +1,121 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background: url('Images/login_background.webp') no-repeat center center/cover;
+}
+
+*{
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+form{
+    width: 600px;
+    border:  2px solid black;
+    padding: 4rem;
+    background-color: rgba(0, 0, 0, 0.444);
+    border: none;
+    border-radius: 30px;
+    color: aliceblue;
+}
+
+h1{
+    display: block;
+    border: 2px solid white;
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+label{
+    color: rgb(255, 225, 0);
+    font-size: 18px;
+    padding: 11px;
+    font-weight: 350;
+}
+
+input{
+    display: block;
+    border: 2px solid rgb(255, 217, 0);
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+/* Botones */
+button.btn {
+    width: 60%;
+    padding: 12px; /* Aumenta el padding para más altura */
+    border-radius: 10cap;
+    cursor: pointer;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background-color: rgb(230, 115, 0);
+    color: white;
+    border: none;
+    position: relative;
+    transition: all 0.2s;
+    margin-top: 15px; /* Espaciado superior adicional para separación */
+}
+
+/* Efectos de animación del botón */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: #883400;
+    color: white;
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10cap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #ddc006;
+    transition: all 0.4s;
+}
+
+.btn:hover::after {
+    transform: scaleX(1) scaleY(1.2);
+    opacity: 0;
+}
+
+/* Enlace para volver a la página principal */
+a {
+    color: rgb(223, 184, 28);
+    text-decoration: none;
+    font-size: 1.4rem;
+    margin-top: 15px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.error{
+    background-color: rgb(255, 55, 55);
+    color: white;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+}
