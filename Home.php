@@ -21,6 +21,8 @@
 
     <a href="listar_pedidos.php" class="btn">Pedidos Trabajador</a>
 
+    <a href="generar_reporte.php" class="btn">Genera Reporte</a>
+
     <a href="CerrarSesion.php" class="btn">Cerrar Sesion</a>
 
 </body>
