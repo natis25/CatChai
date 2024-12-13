@@ -19,6 +19,8 @@
 
     <a href="gestionar_producto.php" class="btn">Producto</a>
 
+    <a href="listar_pedidos.php" class="btn">Pedidos Trabajador</a>
+
     <a href="CerrarSesion.php" class="btn">Cerrar Sesion</a>
 
 </body>
