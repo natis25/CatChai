@@ -1,0 +1,223 @@
+body {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('Images/pedidos_background.webp') no-repeat center center/cover;
+    color: black;
+    margin: 0;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff; /* Texto blanco para contraste */
+    background-color: #a05318; /* Fondo consistente con tus encabezados de tabla */
+    text-align: center; /* Centra el texto */
+    padding: 10px 15px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar relieve */
+    margin: 20px 0; /* Separación vertical */
+}
+
+label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+form {
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #616a13;
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    color: #371900;
+}
+
+.total {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #228B22; /* Verde más intenso para resaltar */
+    text-align: right; /* Alineación a la derecha para que esté cerca del botón de confirmación */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f4f4f4; /* Fondo claro para hacer contraste */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    display: inline-block; /* Hace que el total ocupe solo el espacio necesario */
+    width: auto;
+}
+
+
+.btn {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 10cap;
+    padding: 10px 20px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #6a3d13;
+    position: relative;
+    transition: all 0.6s;
+    overflow: hidden;
+    width: 400px;
+    
+}
+
+.btn:hover {
+    background-color: #0ec023d7;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(65deg);
+    z-index: -1;
+    transition: all 1s;
+}
+
+.btn:hover::before {
+    width: 160%;
+}
+#detallePedidoTable {
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+}
+
+#detallePedidoTable th, #detallePedidoTable td {
+    padding: 10px;
+    text-align: center;
+}
+
+.volver {
+    color: rgb(27, 159, 0);
+    text-decoration: none;
+    font-size: 1.4rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.volver:hover {
+    text-decoration: underline;
+}
+
+.categoria {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    justify-items: center;
+}
+
+/* Estilo para cada producto */
+.producto {
+    border-radius: 10px;
+    padding: 20px;
+    width: 220px;
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
+}
+
+.producto:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.producto h4 {
+    color: #2b2b2b;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+    background-color: #eaeaea; 
+    padding: 5px 10px;
+    border-left: 5px solid #af704c; /* Línea de color para resaltar */
+    border-radius: 3px;
+    margin: 10px 0;
+    display: inline-block;
+    width: 80%;
+}
+
+.producto p {
+    color: #666666;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.cantidad {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+.cantidad:focus {
+    border-color: #616a13;
+    outline: none;
+}
+
+
+.error{
+    background-color: rgb(58, 255, 55);
+    color: black;
+    padding: 10px;
+    width: 70%;
+    border-radius: 5px;
+    margin: 20px auto;
+}
