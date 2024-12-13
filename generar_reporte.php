@@ -89,7 +89,7 @@ class PDF extends FPDF
         $fill = false;
         foreach ($data as $row) {
             $this->Cell($w[0], 10, $row['idPedido'], 'LR', 0, 'C', $fill);
-            $this->Cell($w[1], 10, number_format($row['monto'], 2) . ' Bs', 'LR', 0, 'R', $fill);
+            $this->Cell($w[1], 10, number_format($row['monto'], 2) . ' ', 'LR', 0, 'R', $fill);
             $this->Cell($w[2], 10, $row['cantidad'], 'LR', 0, 'C', $fill);
             $this->Cell($w[3], 10, $row['producto'], 'LR', 0, 'L', $fill);
             $this->Cell($w[4], 10, $row['categoria'], 'LR', 0, 'L', $fill);
