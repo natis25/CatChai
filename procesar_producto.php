@@ -33,34 +33,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->close();
 
     // Acción para editar un producto
-    } elseif ($accion == 'editar') {
-        $id_producto = (int)$_POST['id_producto'];
-        $producto = trim($_POST['producto']);
-        $precio = (float)$_POST['precio'];
-        $descripcion = trim($_POST['descripcion']);
-        $disponibilidad = (int)$_POST['disponibilidad'];
-        $categoria_id = (int)$_POST['categoria'];
+    // Acción para editar un producto
+} elseif ($accion == 'editar') {
+    $id_producto = (int)$_POST['id_producto'];
+    $producto = trim($_POST['producto']);
+    $precio = (float)$_POST['precio'];
+    $descripcion = trim($_POST['descripcion']);
+    $disponibilidad = (int)$_POST['disponibilidad'];
+    $categoria_id = (int)$_POST['categoria'];
 
-        // Validar campos
-        if (empty($producto) || empty($descripcion) || $precio <= 0 || $disponibilidad < 0 || $categoria_id <= 0) {
-            echo "Todos los campos deben estar correctamente llenos y con valores válidos.";
+    // Validar campos
+    if (empty($producto) || empty($descripcion) || $precio <= 0 || $disponibilidad < 0 || $categoria_id <= 0) {
+        echo "Todos los campos deben estar correctamente llenos y con valores válidos.";
+        exit;
+    }
+
+    // Preparar la consulta SQL para editar el producto
+    $stmt = $conn->prepare("UPDATE Producto SET Producto = ?, Precio = ?, Descripcion = ?, Disponibilidad = ?, Categoria_idCategoria = ? WHERE idProducto = ?");
+    $stmt->bind_param("sdsiii", $producto, $precio, $descripcion, $disponibilidad, $categoria_id, $id_producto);
+
+    if ($stmt->execute()) {
+        // Redirigir a gestionar_producto.php con un mensaje de éxito
+        header("Location: gestionar_producto.php?mensaje=producto_actualizado");
+        exit;
+    } else {
+        echo "Error al actualizar el producto: " . $conn->error;
+    }
+
+    $stmt->close();
+}
+
+    // Acción para eliminar un producto
+    } elseif ($accion == 'eliminar') {
+        $id_producto = (int)$_POST['id_producto'];
+
+        // Validar el ID del producto
+        if ($id_producto <= 0) {
+            echo "ID de producto no válido.";
             exit;
         }
 
-        // Preparar la consulta SQL para editar el producto
-        $stmt = $conn->prepare("UPDATE Producto SET Producto = ?, Precio = ?, Descripcion = ?, Disponibilidad = ?, Categoria_idCategoria = ? WHERE idProducto = ?");
-        $stmt->bind_param("sdsiii", $producto, $precio, $descripcion, $disponibilidad, $categoria_id, $id_producto);
+    // Preparar la consulta SQL para eliminar el producto
+    $stmt = $conn->prepare("DELETE FROM Producto WHERE idProducto = ?");
+    $stmt->bind_param("i", $id_producto);
 
-        if ($stmt->execute()) {
-            // Redirigir a gestionar_producto.php con un mensaje de éxito
-            header("Location: gestionar_producto.php?mensaje=producto_actualizado");
+    if ($stmt->execute()) {
+        // Redirigir a gestionar_producto.php con un mensaje de éxito
+            header("Location: gestionar_producto.php?mensaje=producto_eliminado");
             exit;
         } else {
-            echo "Error al actualizar el producto: " . $conn->error;
+            echo "Error al eliminar el producto: " . $conn->error;
         }
 
         $stmt->close();
     }
+
 }
 
 $conn->close();

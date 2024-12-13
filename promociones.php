@@ -19,6 +19,9 @@
 
     <!-- Formulario para añadir una promoción -->
     <h1>Añadir una Promoción</h1>
+    <?php
+    $fecha_actual = date('Y-m-d'); // Obtiene la fecha actual en formato YYYY-MM-DD
+    ?>
     <form action="procesar_promocion.php" method="post">
         <label for="descuento">Descuento:</label>
         <input type="text" name="descuento" id="descuento" required>
@@ -27,10 +30,10 @@
         <input type="number" name="porcentaje" id="porcentaje" min="0" max="100" required>
 
         <label for="fecha_inicio">Fecha de Inicio:</label>
-        <input type="date" name="fecha_inicio" id="fecha_inicio" required>
+        <input type="date" name="fecha_inicio" id="fecha_inicio" min="<?= $fecha_actual; ?>" required>
 
         <label for="fecha_fin">Fecha de Fin:</label>
-        <input type="date" name="fecha_fin" id="fecha_fin" required>
+        <input type="date" name="fecha_fin" id="fecha_fin" min="<?= $fecha_actual; ?>" required>
 
         <button class="btn" type="submit" name="accion" value="crear">Añadir Promoción</button>
     </form>
@@ -44,7 +47,7 @@
                 <th>Porcentaje</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha Fin</th>
-                <th>Editar</th>
+                <th>Modificar</th>
                 <th>Eliminar</th>
             </tr>
         </thead>
@@ -65,13 +68,14 @@
                         <td>
                             <form action="" method="post" style="display:inline;">
                                 <input type="hidden" name="id_descuento" value="<?= htmlspecialchars($row['IdDescuentos']); ?>">
-                                <button class="btn-modificar" type="submit" name="accion" value="editar">Modificar</button>
+                                <button type="submit" name="accion" value="editar">Modificar</button>
                             </form>
                         </td>
                         <td>
-                            <form action="" method="post" style="display:inline;">
+                            <form action="procesar_promocion.php" method="post" style="display:inline;" onsubmit="return confirmarEliminacion();">
                                 <input type="hidden" name="id_descuento" value="<?= htmlspecialchars($row['IdDescuentos']); ?>">
-                                <button class="btn-eliminar" type="submit" name="accion" value="eliminar">Eliminar</button>
+                                <input type="hidden" name="accion" value="eliminar">
+                                <button type="submit">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -82,6 +86,13 @@
                 echo "<tr><td colspan='5'>Error al conectar con la base de datos.</td></tr>";
             }
             ?>
+
+            <script>
+                function confirmarEliminacion() {
+                return confirm("¿Está seguro de que desea eliminar esta promoción?");
+                }
+            </script>
+
         </tbody>
     </table>
 
@@ -107,10 +118,14 @@
                 <input type="number" name="porcentaje" id="nuevo_porcentaje" value="<?= htmlspecialchars($row['Porcentaje']); ?>" min="0" max="100" required>
 
                 <label for="nueva_inicio">Fecha de Inicio:</label>
-                <input type="date" name="fecha_inicio" id="nueva_inicio" value="<?= htmlspecialchars($row['FechaInicio']); ?>" required>
+                <input type="date" name="fecha_inicio" id="nueva_inicio" 
+                value="<?= htmlspecialchars($row['FechaInicio']); ?>" 
+                min="<?= $fecha_actual; ?>" required>
 
                 <label for="nuevo_fin">Fecha de Fin:</label>
-                <input type="date" name="fecha_fin" id="nuevo_fin" value="<?= htmlspecialchars($row['FechaFin']); ?>" required>
+                <input type="date" name="fecha_fin" id="nuevo_fin" 
+                value="<?= htmlspecialchars($row['FechaFin']); ?>" 
+                min="<?= $fecha_actual; ?>" required>
 
                 <button class="btn" type="submit">Guardar Cambios</button>
             </form>

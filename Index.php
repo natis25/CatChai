@@ -13,7 +13,9 @@
 
 <body>
     <form action="iniciarsesion.php" method="POST">
-        <h1>INICIAR SESION</h1>
+        <center>
+            <img src="Images/logo.png" id="logo">
+        </center>
         <hr>
         <?php
         if (isset($_GET['error'])) {

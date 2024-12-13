@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="home.css">
 
-    <title>INCIO</title>
+    <title>INICIO</title>
 </head>
 
 <body>
-    <H1>HOME</H1>
+    <H1>INICIO</H1>
 
     <a href="pedidos.php" class="btn">Pedidos</a>
 

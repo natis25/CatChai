@@ -49,6 +49,23 @@ class Pedido
         }
         echo "</div>"; // Cierra el último div de categoría
     }
+
+    public function mostrarDescuentoActivo()
+    {
+        $hoy = date('Y-m-d');
+        $query = "SELECT * FROM descuentos WHERE FechaInicio <= '$hoy' AND FechaFin >= '$hoy' LIMIT 1";
+        $result = $this->conn->query($query);
+
+        if ($result && $row = $result->fetch_assoc()) {
+            echo "<div class='descuento'>
+                <h2>Descuento Activo</h2>
+                <p>Descuento: {$row['Descuento']}</p>
+                <p>Porcentaje: {$row['Porcentaje']}%</p>
+                <p>Válido desde: {$row['FechaInicio']} hasta: {$row['FechaFin']}</p>
+                <input type='hidden' id='porcentajeDescuento' value='{$row['Porcentaje']}'>
+            </div>";
+        }
+    }
 }
 $pedido = new Pedido($conn);
 ?>
@@ -59,16 +76,16 @@ $pedido = new Pedido($conn);
     <title>Nuevo Pedido</title>
 
     <script>
-        // Función para calcular y mostrar el total
+        function redondearCercano(numero) {
+            return Math.round(numero * 2) / 2;
+}
         function calcularTotal() {
             let total = 0;
-
-            // Selecciona las cantidades
+            const descuento = parseFloat(document.getElementById('porcentajeDescuento')?.value || 0);
             const cantidades = document.querySelectorAll('.cantidad');
             const detallePedido = document.getElementById('detallePedido');
 
-            // Limpia la tabla para evitar duplicados
-            detallePedido.innerHTML = ""; // Borra el contenido existente de la tabla
+            detallePedido.innerHTML = "";
 
             cantidades.forEach(cantidad => {
                 const idProducto = cantidad.dataset.productoId;
@@ -76,12 +93,10 @@ $pedido = new Pedido($conn);
                 const precio = parseFloat(cantidad.dataset.precio);
                 const cant = parseInt(cantidad.value) || 0;
 
-                // Solo añade filas si la cantidad es mayor a 0
                 if (cant > 0) {
                     const subtotal = precio * cant;
                     total += subtotal;
 
-                    // Crea una nueva fila
                     const fila = document.createElement('tr');
                     fila.innerHTML = `
                         <td>${producto}</td>
@@ -90,26 +105,30 @@ $pedido = new Pedido($conn);
                         <td>Bs${subtotal.toFixed(2)}</td>
                     `;
 
-                    // Agrega la fila a la tabla
                     detallePedido.appendChild(fila);
                 }
             });
 
-            // Mostrar el total actualizado
+            // Aplicar descuento si existe
+            if (descuento > 0) {
+                const descuentoAplicado = total * (descuento / 100);
+                total -= descuentoAplicado;
+                document.getElementById('descuentoAplicado').textContent = `Descuento aplicado: Bs ${descuentoAplicado.toFixed(2)}`;
+            } else {
+                document.getElementById('descuentoAplicado').textContent = '';
+            }
+
+            total = redondearCercano(total);
             document.getElementById('total').textContent = `Total: Bs ${total.toFixed(2)}`;
         }
-
-        // Mostrar el total y el detalle del pedido
-        document.getElementById('total').textContent = 'Total: Bs' + total.toFixed(2);
-        document.getElementById('detallePedido').innerHTML = detallePedido;
 
         function enviarPedido() {
             const cantidades = document.querySelectorAll('.cantidad');
             const productos = {};
 
             cantidades.forEach(cantidad => {
-                const idProducto = cantidad.dataset.productoId; // ID del producto
-                const cant = parseInt(cantidad.value) || 0; // Cantidad seleccionada
+                const idProducto = cantidad.dataset.productoId;
+                const cant = parseInt(cantidad.value) || 0;
 
                 if (cant > 0) {
                     productos[idProducto] = cant;
@@ -118,29 +137,6 @@ $pedido = new Pedido($conn);
 
             document.getElementById('productosSeleccionados').value = JSON.stringify(productos);
         }
-
-        cantidades.forEach(cantidad => {
-            const precio = parseFloat(cantidad.dataset.precio);
-            const producto = cantidad.dataset.producto;
-            const max = parseInt(cantidad.max);
-            const cant = parseInt(cantidad.value) || 0;
-
-            if (cant > 0 && cant <= max) {
-                const subtotal = precio * cant;
-                total += subtotal;
-
-                // Añadir producto a la tabla de pedido
-                detallePedido += `<tr>
-                <td>${producto}</td>
-                <td>${cant}</td>
-                <td>Bs${precio.toFixed(2)}</td>
-                <td>Bs${subtotal.toFixed(2)}</td>
-            </tr>`;
-            }
-        });
-        // Mostrar el total y el detalle del pedido
-        document.getElementById('total').textContent = 'Total: Bs' + total.toFixed(2);
-        document.getElementById('detallePedido').innerHTML = detallePedido;
     </script>
 
 </head>
@@ -148,14 +144,16 @@ $pedido = new Pedido($conn);
 <body>
     <h1>Nuevo Pedido</h1>
 
+    <?php $pedido->mostrarDescuentoActivo(); ?>
+
     <form id="pedidoForm" action="procesar_pedido.php" method="post" onsubmit="enviarPedido(); return true;">
         <?php $pedido->mostrarProductos(); ?>
         <input type="hidden" id="productosSeleccionados" name="productos">
+        <p id="descuentoAplicado"></p>
         <p class="total" id="total">Total: Bs 0.00</p>
         <button class="btn" type="submit">Confirmar Pedido</button>
     </form>
 
-    <!-- Tabla de detalles del pedido -->
     <h1>Productos en el Pedido</h1>
     <table id="detallePedidoTable">
         <thead>
@@ -167,7 +165,6 @@ $pedido = new Pedido($conn);
             </tr>
         </thead>
         <tbody id="detallePedido">
-            <!-- Aquí se llenarán los productos seleccionados -->
         </tbody>
     </table>
 

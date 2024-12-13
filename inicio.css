@@ -3,9 +3,22 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    /*background: #461b00;*/
-    background: linear-gradient(to right, #bde2ff 0%, #401802 100%);
+    background: #461b00;
+    /*background: linear-gradient(to right, #bde2ff 0%, #401802 100%);*/
     color: #fff;
+}
+
+#login{
+    position: relative;
+}
+
+#icono_blanco{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 100px;
+    height: 150px;
+    cursor: pointer;
 }
 
 h2 {

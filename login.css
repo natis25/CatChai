@@ -1,62 +1,72 @@
-/* Estilo general */
-body {
-    font-family: Arial, sans-serif;
+body{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    flex-direction: column;
     background: url('Images/login_background.webp') no-repeat center center/cover;
 }
 
-/* Contenedor de login con efecto de difuminado */
-.login-container {
-    background-color: rgba(135, 135, 135, 0.2); /* Fondo semitransparente */
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
-    padding: 40px 30px; /* Espaciado adicional */
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    width: 350px; /* Ancho mayor para mayor alineación */
+*{
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    box-sizing: border-box;
 }
 
-/* Título */
-h2 {
-    margin-bottom: 25px; /* Mayor espaciado inferior */
-    color: #ff7e46;
-    font-size: 38px;
+#logo{
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
 }
 
-/* Etiquetas y campos de texto */
-label {
+form{
+    width: 600px;
+    border:  2px solid black;
+    padding: 4rem;
+    background-color: rgba(0, 0, 0, 0.444);
+    border: none;
+    border-radius: 30px;
+    color: aliceblue;
+}
+
+h1{
     display: block;
-    margin-bottom: 10px; /* Espaciado inferior adicional */
-    font-weight: bold;
-    color: #ffb700;
-    font-size: 24px;
+    border: 2px solid white;
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
 }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px; /* Aumenta el padding para más altura */
-    margin-bottom: 15px; /* Espaciado inferior adicional */
-    background-color: #f8ffff;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
+label{
+    color: rgb(255, 225, 0);
+    font-size: 18px;
+    padding: 11px;
+    font-weight: 350;
+}
+
+input{
+    display: block;
+    border: 2px solid rgb(255, 217, 0);
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
 }
 
 /* Botones */
 button.btn {
-    width: 100%;
+    width: 60%;
     padding: 12px; /* Aumenta el padding para más altura */
-    border-radius: 4px;
+    border-radius: 10cap;
     cursor: pointer;
     font-size: 17px;
     text-transform: uppercase;
     font-weight: 500;
-    background-color: rgb(255, 222, 200);
-    color: rgb(66, 18, 0);
+    background-color: rgb(230, 115, 0);
+    color: white;
     border: none;
     position: relative;
     transition: all 0.2s;
@@ -67,7 +77,8 @@ button.btn {
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background-color: #ffac28;
+    background-color: #883400;
+    color: white;
 }
 
 .btn:active {
@@ -75,18 +86,17 @@ button.btn {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Efecto de pseudo-elemento para botón */
 .btn::after {
     content: "";
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10cap;
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: #fff;
+    background-color: #ddc006;
     transition: all 0.4s;
 }
 
@@ -97,11 +107,22 @@ button.btn {
 
 /* Enlace para volver a la página principal */
 a {
-    display: block;
-    margin-top: 15px;
+    color: rgb(223, 184, 28);
     text-decoration: none;
+    font-size: 1.4rem;
+    margin-top: 15px;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #ffd069;
+}
+
+.error{
+    background-color: rgb(255, 55, 55);
+    color: white;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
 }
