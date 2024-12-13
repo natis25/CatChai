@@ -1,10 +1,13 @@
+F
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="pedidos.css">
     <title>Listar Pedidos</title>
 </head>
+
 <body>
     <h1>Lista de Pedidos Pendientes</h1>
 
@@ -21,9 +24,9 @@
 
         // Consulta con JOIN para obtener solo los pedidos con Estado = false
         $query = "SELECT Pedido.IdPedido, Pedido.FechaPedido, Pedido.HoraPedido, Pedido.PrecioTotal, 
-                         Cliente.Nombre AS NombreCliente 
-                  FROM Pedido
-                  JOIN Cliente ON Pedido.Cliente_IdPersona = Cliente.IdPersona
+                        Cliente.Nombre AS NombreCliente 
+                FROM Pedido
+                JOIN Cliente ON Pedido.Cliente_IdPersona = Cliente.IdPersona
                   WHERE Pedido.Estado = 0"; // Filtra los pedidos no confirmados (Estado = false)
 
         $result = $conn->query($query);
@@ -36,11 +39,10 @@
                     <td>{$row['HoraPedido']}</td>
                     <td>Bs{$row['PrecioTotal']}</td>
                     <td>
-                        <a href='mostrar_pedido.php?id={$row['IdPedido']}'>Mostrar</a> |
-                        <a href='confirmar_pedido.php?id={$row['IdPedido']}'>Confirmar</a> | 
-                        <a href='editar_pedido.php?id={$row['IdPedido']}'>Editar</a> | 
-                        <a href='eliminar_pedido.php?id={$row['IdPedido']}' onclick='return confirm(\"¿Estás seguro de cancelar este pedido?\")'>Cancelar</a> 
-                       
+                        <button class='btn-mostrar' onclick=\"location.href='mostrar_pedido.php?id={$row['IdPedido']}'\">Mostrar</button>
+                        <button class='btn-mostrar' onclick=\"location.href='confirmar_pedido.php?id={$row['IdPedido']}'\">Confirmar</button>
+                        <button class='btn-modificar' onclick=\"location.href='editar_pedido.php?id={$row['IdPedido']}'\">Editar</button>
+                        <button class='btn-eliminar' onclick=\"return confirm('¿Estás seguro de cancelar este pedido?') ? location.href='eliminar_pedido.php?id={$row['IdPedido']}' : false;\">Cancelar</button>
                     </td>
                 </tr>";
         }
@@ -50,4 +52,5 @@
     </table>
     <a href="Home.php">Volver al Inicio</a>
 </body>
+
 </html>
