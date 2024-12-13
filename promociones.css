@@ -185,6 +185,7 @@ option:hover {
     margin: 20px auto;
 }
 
+
 /* Botones de "Modificar" y "Eliminar"*/
 .btn-modificar {
     color: #007bff; /* Azul */
@@ -201,26 +202,6 @@ option:hover {
 }
 
 .btn-modificar:hover {
-    color: white;
-    background-color: #0056b3; /* Azul oscuro */
-    border: 2px solid white;
-}
-
-.btn-eliminar {
-    color: #007bff; /* Azul */
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 2px solid #007bff;
-    border-radius: 8cap;
-    padding: 10px 20px;
-    font-size: 15px;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: white; 
-    transition: all 0.7s;
-}
-
-.btn-eliminar:hover {
     color: white;
     background-color: #0056b3; /* Azul oscuro */
     border: 2px solid white;

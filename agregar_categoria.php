@@ -53,7 +53,7 @@
                     <td>
                         <form action='' method='post' style='display:inline;'>
                             <input type='hidden' name='id_categoria' value='{$row['idCategoria']}'>
-                            <button class='btn-eliminar' type='submit' name='accion' value='eliminar'>Eliminar</button>
+                            <button class='btn-eliminar'type='submit' name='accion' value='eliminar'>Eliminar</button>
                         </form>
                     </td>
                 </tr>";

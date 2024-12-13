@@ -34,20 +34,38 @@ class Pedido
                     <h4>{$row['Producto']}</h4>
                     <p>{$row['Descripcion']}</p>
                     <p>Precio: Bs{$row['Precio']}</p>
-                    <p>Disponibilidad: {$row['Disponibilidad']}</p>
+                    
 
                     <input type='number' class='cantidad' 
                         data-producto-id='{$row['idProducto']}' 
                         data-producto='{$row['Producto']}'
                         data-idCategoria='{$row['Categoria_idCategoria']}' 
                         data-precio='{$row['Precio']}' 
-                        max='{$row['Disponibilidad']}' 
+                        max='{$row['Disponibilidad']}'
+                        min='0' 
                         value='0' 
                         onchange='calcularTotal()'>
                         
                 </div>";
         }
         echo "</div>"; // Cierra el último div de categoría
+    }
+
+    public function mostrarDescuentoActivo()
+    {
+        $hoy = date('Y-m-d');
+        $query = "SELECT * FROM descuentos WHERE FechaInicio <= '$hoy' AND FechaFin >= '$hoy' LIMIT 1";
+        $result = $this->conn->query($query);
+
+        if ($result && $row = $result->fetch_assoc()) {
+            echo "<div class='producto'>
+                <h4 style='border-left: 5px solid rgb(188, 208, 12)'>Descuento Activo</h4>
+                <p>Descuento: {$row['Descuento']}</p>
+                <p>Porcentaje: {$row['Porcentaje']}%</p>
+                <p>Válido desde: {$row['FechaInicio']} hasta: {$row['FechaFin']}</p>
+                <input type='hidden' id='porcentajeDescuento' value='{$row['Porcentaje']}'>
+            </div>";
+        }
     }
 }
 $pedido = new Pedido($conn);
@@ -59,103 +77,92 @@ $pedido = new Pedido($conn);
     <title>Nuevo Pedido</title>
 
     <script>
-        // Función para calcular y mostrar el total
-        function calcularTotal() {
-            let total = 0;
+    function redondearCercano(numero) {
+        return Math.round(numero * 2) / 2;
+    }
+    
+    function calcularTotal() {
+        let total = 0;
+        let subtotalGeneral = 0; // Subtotal sin descuento
+        const descuento = parseFloat(document.getElementById('porcentajeDescuento')?.value || 0);
+        const cantidades = document.querySelectorAll('.cantidad');
+        const detallePedido = document.getElementById('detallePedido');
 
-            // Selecciona las cantidades
-            const cantidades = document.querySelectorAll('.cantidad');
-            const detallePedido = document.getElementById('detallePedido');
-
-            // Limpia la tabla para evitar duplicados
-            detallePedido.innerHTML = ""; // Borra el contenido existente de la tabla
-
-            cantidades.forEach(cantidad => {
-                const idProducto = cantidad.dataset.productoId;
-                const producto = cantidad.dataset.producto;
-                const precio = parseFloat(cantidad.dataset.precio);
-                const cant = parseInt(cantidad.value) || 0;
-
-                // Solo añade filas si la cantidad es mayor a 0
-                if (cant > 0) {
-                    const subtotal = precio * cant;
-                    total += subtotal;
-
-                    // Crea una nueva fila
-                    const fila = document.createElement('tr');
-                    fila.innerHTML = `
-                        <td>${producto}</td>
-                        <td>${cant}</td>
-                        <td>Bs${precio.toFixed(2)}</td>
-                        <td>Bs${subtotal.toFixed(2)}</td>
-                    `;
-
-                    // Agrega la fila a la tabla
-                    detallePedido.appendChild(fila);
-                }
-            });
-
-            // Mostrar el total actualizado
-            document.getElementById('total').textContent = `Total: Bs ${total.toFixed(2)}`;
-        }
-
-        // Mostrar el total y el detalle del pedido
-        document.getElementById('total').textContent = 'Total: Bs' + total.toFixed(2);
-        document.getElementById('detallePedido').innerHTML = detallePedido;
-
-        function enviarPedido() {
-            const cantidades = document.querySelectorAll('.cantidad');
-            const productos = {};
-
-            cantidades.forEach(cantidad => {
-                const idProducto = cantidad.dataset.productoId; // ID del producto
-                const cant = parseInt(cantidad.value) || 0; // Cantidad seleccionada
-
-                if (cant > 0) {
-                    productos[idProducto] = cant;
-                }
-            });
-
-            document.getElementById('productosSeleccionados').value = JSON.stringify(productos);
-        }
+        detallePedido.innerHTML = "";
 
         cantidades.forEach(cantidad => {
-            const precio = parseFloat(cantidad.dataset.precio);
+            const idProducto = cantidad.dataset.productoId;
             const producto = cantidad.dataset.producto;
-            const max = parseInt(cantidad.max);
+            const precio = parseFloat(cantidad.dataset.precio);
             const cant = parseInt(cantidad.value) || 0;
 
-            if (cant > 0 && cant <= max) {
+            if (cant > 0) {
                 const subtotal = precio * cant;
+                subtotalGeneral += subtotal; // Sumar al subtotal general
                 total += subtotal;
 
-                // Añadir producto a la tabla de pedido
-                detallePedido += `<tr>
-                <td>${producto}</td>
-                <td>${cant}</td>
-                <td>Bs${precio.toFixed(2)}</td>
-                <td>Bs${subtotal.toFixed(2)}</td>
-            </tr>`;
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${producto}</td>
+                    <td>${cant}</td>
+                    <td>Bs${precio.toFixed(2)}</td>
+                    <td>Bs${subtotal.toFixed(2)}</td>
+                `;
+
+                detallePedido.appendChild(fila);
             }
         });
-        // Mostrar el total y el detalle del pedido
-        document.getElementById('total').textContent = 'Total: Bs' + total.toFixed(2);
-        document.getElementById('detallePedido').innerHTML = detallePedido;
-    </script>
+
+        // Mostrar el subtotal general sin descuentos
+        document.getElementById('subtotal').textContent = `Subtotal: Bs ${subtotalGeneral.toFixed(2)}`;
+
+        // Aplicar descuento si existe
+        if (descuento > 0) {
+            const descuentoAplicado = subtotalGeneral * (descuento / 100);
+            total = subtotalGeneral - descuentoAplicado;
+            document.getElementById('descuentoAplicado').textContent = `Descuento aplicado: Bs ${descuentoAplicado.toFixed(2)}`;
+        } else {
+            document.getElementById('descuentoAplicado').textContent = '';
+        }
+
+        total = redondearCercano(total);
+        document.getElementById('total').textContent = `Total: Bs ${total.toFixed(2)}`;
+    }
+
+    function enviarPedido() {
+        const cantidades = document.querySelectorAll('.cantidad');
+        const productos = {};
+
+        cantidades.forEach(cantidad => {
+            const idProducto = cantidad.dataset.productoId;
+            const cant = parseInt(cantidad.value) || 0;
+
+            if (cant > 0) {
+                productos[idProducto] = cant;
+            }
+        });
+
+        document.getElementById('productosSeleccionados').value = JSON.stringify(productos);
+    }
+</script>
+
 
 </head>
 
 <body>
     <h1>Nuevo Pedido</h1>
 
+    <?php $pedido->mostrarDescuentoActivo(); ?>
+
     <form id="pedidoForm" action="procesar_pedido.php" method="post" onsubmit="enviarPedido(); return true;">
         <?php $pedido->mostrarProductos(); ?>
         <input type="hidden" id="productosSeleccionados" name="productos">
+        <p class="total" style="color: black" id="subtotal"></p>
+        <p class="total" style="color: black" id="descuentoAplicado"></p>
         <p class="total" id="total">Total: Bs 0.00</p>
         <button class="btn" type="submit">Confirmar Pedido</button>
     </form>
 
-    <!-- Tabla de detalles del pedido -->
     <h1>Productos en el Pedido</h1>
     <table id="detallePedidoTable">
         <thead>
@@ -167,11 +174,10 @@ $pedido = new Pedido($conn);
             </tr>
         </thead>
         <tbody id="detallePedido">
-            <!-- Aquí se llenarán los productos seleccionados -->
         </tbody>
     </table>
 
-    <a class="volver" href="Home.php">Volver al Inicio</a>
+    <a class="volver" href="CerrarSesion.php">Salir</a>
 </body>
 
 </html>

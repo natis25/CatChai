@@ -212,6 +212,13 @@ td {
     outline: none;
 }
 
+a {
+    color: rgb(27, 159, 0);
+    text-decoration: none;
+    font-size: 1.4rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
 
 .error{
     background-color: rgb(58, 255, 55);
@@ -220,4 +227,65 @@ td {
     width: 70%;
     border-radius: 5px;
     margin: 20px auto;
+}
+
+/* Botones de "Modificar" y "Eliminar"*/
+.btn-mostrar {
+    color: #00de16; /* Azul */
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid #00de16;
+    border-radius: 8cap;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: white; 
+    transition: all 0.7s;
+}
+
+.btn-mostrar:hover {
+    color: white;
+    background-color: #1eb300; /* Azul oscuro */
+    border: 2px solid white;
+}
+
+.btn-modificar {
+    color: #007bff; /* Azul */
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid #007bff;
+    border-radius: 8cap;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: white; 
+    transition: all 0.7s;
+}
+
+.btn-modificar:hover {
+    color: white;
+    background-color: #0056b3; /* Azul oscuro */
+    border: 2px solid white;
+}
+
+.btn-eliminar {
+    color: #dc3545;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid #dc3545;
+    border-radius: 8cap;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: white; /* Rojo */
+    transition: 0.7s;
+}
+
+.btn-eliminar:hover {
+    color: white;
+    background-color: #a71d2a; /* Rojo oscuro */
+    border: 2px solid white;
 }
