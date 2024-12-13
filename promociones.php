@@ -68,14 +68,14 @@
                         <td>
                             <form action="" method="post" style="display:inline;">
                                 <input type="hidden" name="id_descuento" value="<?= htmlspecialchars($row['IdDescuentos']); ?>">
-                                <button type="submit" name="accion" value="editar">Modificar</button>
+                                <button class="btn-modificar" type="submit" name="accion" value="editar">Modificar</button>
                             </form>
                         </td>
                         <td>
                             <form action="procesar_promocion.php" method="post" style="display:inline;" onsubmit="return confirmarEliminacion();">
                                 <input type="hidden" name="id_descuento" value="<?= htmlspecialchars($row['IdDescuentos']); ?>">
                                 <input type="hidden" name="accion" value="eliminar">
-                                <button type="submit">Eliminar</button>
+                                <button class="btn-eliminar" type="submit">Eliminar</button>
                             </form>
                         </td>
                     </tr>
