@@ -1,8 +1,15 @@
 <?php
 include 'catchai.php';
+session_start(); // Asegúrate de que la sesión esté iniciada
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+    // Obtén el ID del usuario desde la sesión
+    if (!isset($_SESSION['IdPersona'])) {
+        echo "Error: Usuario no autenticado.";
+        exit;
+    }
+    $idPersona = $_SESSION['IdPersona'];
+
     $productos = json_decode($_POST['productos'], true);
     if (!$productos) {
         echo "No se recibieron productos.";
@@ -12,6 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fecha_pedido = date('Y-m-d');
     $hora_pedido = date('H:i:s');
     $total = 0;
+
+    // Verificar si hay un descuento activo
+    $hoy = date('Y-m-d');
+    $queryDescuento = "SELECT Porcentaje FROM descuentos WHERE FechaInicio <= '$hoy' AND FechaFin >= '$hoy' LIMIT 1";
+    $resultDescuento = $conn->query($queryDescuento);
+    $porcentajeDescuento = 0;
+
+    if ($resultDescuento && $rowDescuento = $resultDescuento->fetch_assoc()) {
+        $porcentajeDescuento = $rowDescuento['Porcentaje']; // Obtén el porcentaje del descuento
+    }
 
     // Calcular el total y verificar la disponibilidad de cada producto
     foreach ($productos as $idProducto => $cantidad) {
@@ -34,9 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Insertar el nuevo pedido en la tabla Pedido
-    $stmt = $conn->prepare("INSERT INTO Pedido (FechaPedido, HoraPedido, PrecioTotal) VALUES (?, ?, ?)");
-    $stmt->bind_param("ssd", $fecha_pedido, $hora_pedido, $total);
+    // Aplicar el descuento al total si corresponde
+    if ($porcentajeDescuento > 0) {
+        $descuentoAplicado = $total * ($porcentajeDescuento / 100);
+        $total -= $descuentoAplicado; // Total con el descuento aplicado
+    }
+
+    // Insertar el nuevo pedido en la tabla Pedido, incluyendo Cliente_IdPersona y PrecioTotal con descuento
+    $stmt = $conn->prepare("INSERT INTO Pedido (FechaPedido, HoraPedido, PrecioTotal, Cliente_IdPersona) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssdi", $fecha_pedido, $hora_pedido, $total, $idPersona);
 
     if ($stmt->execute()) {
         $idPedido = $stmt->insert_id; // Obtener el ID del nuevo pedido insertado
