@@ -97,7 +97,7 @@
             }
             echo "      </select>
                         </td>
-                        <td><button type='submit'>Guardar</button></td>
+                        <td><button class='btn-modificar' type='submit'>Guardar</button></td>
                     </form>
                 </tr>";
         }
